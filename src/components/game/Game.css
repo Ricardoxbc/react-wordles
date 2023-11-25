@@ -1,0 +1,125 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+  margin: 1.75em auto;
+  padding: .5em 0;
+}
+
+.game-row {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0.35em;
+
+  & .item {
+    width: 62.5px;
+    height: 62.5px;
+    outline: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: var(--color-basic);
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 1.875em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+  & .exact {
+    background-color: var(--color-exact);
+    color: #fff;
+  }
+
+  & .found {
+    background-color: var(--color-found);
+    color: #fff;
+  }
+  & .active {
+    color: #fff;
+    background-color: var(--color-active);
+  }
+}
+
+.letters {
+  margin: 0 auto;
+  width: fit-content;
+  & .keyboard {
+    display: grid;
+    grid-auto-columns: 60px;
+    grid-auto-rows: 65px;
+    grid-template-columns: repeat(7, 60px);
+
+    & button {
+      cursor: pointer;
+      border: none;
+      outline: 1px solid var(--color-basic);
+      border-radius: 5px;
+      padding: 1em;
+      font-weight: bold;
+      background-color: #e6e6e6;
+
+      &:hover {
+        background-color: var(--color-active);
+        color: #fff;
+      }
+
+      &.exact {
+        background-color: var(--color-exact);
+      }
+
+      &.found {
+        background-color: var(--color-found);
+      }
+
+      &.not-found {
+        background-color: var(--color-not-found);
+        color: #fff;
+      }
+
+      &.next {
+        background-color: var(--color-exact);
+        color: #fff;
+        grid-column: -1 / span 2;
+        &:hover {
+          background-color: #49a14e;
+        }
+      }
+      &.delete {
+        background-color: rgb(248, 77, 77);
+        color: #fff;
+        &:hover {
+          background-color: rgb(255, 34, 34);
+        }
+      }
+    }
+  }
+}
+
+.info {
+  margin: 2em;
+  margin-bottom: 15em;
+}
+
+@media screen and (width < 600px) {
+
+  .game-row {
+    & .item {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .letters .keyboard {
+    grid-auto-rows: 50px;
+    grid-auto-columns: 50px;
+    grid-template-columns: repeat(6, 50px);
+
+    & button.next {
+      grid-column:  2 span/-1;
+    }
+    & button.delete {
+      grid-column: 1 span / -1;
+    }
+
+  }
+}
